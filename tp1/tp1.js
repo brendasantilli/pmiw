@@ -1,3 +1,5 @@
+//https://youtu.be/uEtCh9sKP7o
+
 let img;
 let cuadradosX, cuadradosY;
 let anchoCuadrados, altoCuadrados;
