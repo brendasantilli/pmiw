@@ -1,6 +1,17 @@
 let pantallaActual = 0;
+/*
+let misPantallas = {
+"inicio": "pantalla0",
+"pantalla1": "pantalla1",
+"creditos": "pantalla creditos"
+
+}
+*/
 let imagenes = [];
 let textos = [];
+/*
+let nombresonido;
+*/
 let desiciones = {
   3: [4, 7],      
   8: [9, 10],     
@@ -12,6 +23,11 @@ function preload() {
     imagenes[i] = loadImage("data/pantalla " + (i + 1) + ".jpeg");
   }
   textos = loadStrings('data/textos.txt');
+ 
+ /* SONIDOS, copiar libreria de p5js p sonidos, crear en  un txt llamado p5.sound.js y pegarlo ahi, modificar en el NO CHANGES UNTIL I SAY SO
+  soundFormats('mp3');
+  soundFile = loadSound('data/nombresonido.mp3');
+*/
 }
 
 function setup() {
@@ -27,7 +43,6 @@ function draw() {
   if (pantallaActual < 17) {
     text(textos[pantallaActual], width / 2, height - 100);
   }
-
   if (desiciones[pantallaActual]) {
     DibujarBotones();
   }
@@ -44,19 +59,28 @@ function DibujarBotones() {
 }
 
 function keyPressed() {
-  if (pantallaActual === 6 || pantallaActual === 8 || pantallaActual === 13 || pantallaActual === 16) {
-    if (keyCode === ENTER && pantallaActual !== 16) {
-      pantallaActual = 0; 
-    } else if (pantallaActual === 16 && keyCode === RIGHT_ARROW) {
-      pantallaActual = 6; 
-    }
+  if (pantallaActual === 16 && keyCode === RIGHT_ARROW) {
+    pantallaActual = 6;
+  } else if (keyCode === ENTER && (pantallaActual === 6 || pantallaActual === 8 || pantallaActual === 13)) {
+    pantallaActual = 0;
   } else if (!desiciones[pantallaActual]) {
-    if (keyCode === RIGHT_ARROW && pantallaActual < 17) { 
+    if (keyCode === RIGHT_ARROW && pantallaActual < 16) {
       pantallaActual++;
-    } else if (keyCode === LEFT_ARROW && pantallaActual > 0) { 
+    } else if (keyCode === LEFT_ARROW && pantallaActual > 0) {
       pantallaActual--;
     }
   }
+}
+  
+/*SONIDOS PLAY
+ nombresonido.loop();
+
+DESPUES EN UN mouseReleased*() hacer esto:
+sounFile.play();
+sounFile.pause();
+
+*/
+
 }
 
 function mousePressed() {
