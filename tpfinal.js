@@ -61,16 +61,17 @@ function DibujarBotones() {
 function keyPressed() {
   if (pantallaActual === 16 && keyCode === RIGHT_ARROW) {
     pantallaActual = 6;
-  } else if (keyCode === ENTER && (pantallaActual === 6 || pantallaActual === 8 || pantallaActual === 13)) {
+  } else if (keyCode === ENTER && (pantallaActual === 6 || pantallaActual === 9 || pantallaActual === 13)) {
     pantallaActual = 0;
-  } else if (!desiciones[pantallaActual]) {
-    if (keyCode === RIGHT_ARROW && pantallaActual < 16) {
+  } else if (!desiciones[pantallaActual] && pantallaActual < 16) { 
+    if (keyCode === RIGHT_ARROW) {
       pantallaActual++;
     } else if (keyCode === LEFT_ARROW && pantallaActual > 0) {
       pantallaActual--;
     }
   }
 }
+
   
 /*SONIDOS PLAY
  nombresonido.loop();
@@ -81,10 +82,9 @@ sounFile.pause();
 
 */
 
-}
 
 function mousePressed() {
-  let decisionesPantalla = obtenerDecisiones(pantallaActual); 
+  let decisionesPantalla = sinDecisiones(pantallaActual); 
   if (decisionesPantalla) {
     if (mouseX > width / 2 - 150 && mouseX < width / 2 - 50 && mouseY > height - 50 && mouseY < height - 20) {
       pantallaActual = decisionesPantalla[0];
@@ -94,6 +94,6 @@ function mousePressed() {
   }
 }
 
-function obtenerDecisiones(pantalla) {
+function sinDecisiones(pantalla) {
   return desiciones[pantalla] || null;
 }
