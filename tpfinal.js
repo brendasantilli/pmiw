@@ -1,9 +1,7 @@
 let pantallaActual = 0;
 let imagenes = [];
-let sonidos = [];
 let textos = [];
-let decisionTomada = false;
-let decisionesConDatos = {
+let desiciones = {
   3: [4, 7],      
   8: [9, 10],     
   11: [12, 14]
@@ -30,7 +28,7 @@ function draw() {
     text(textos[pantallaActual], width / 2, height - 100);
   }
 
-  if (pantallaActual == 3 || pantallaActual == 8 || pantallaActual == 11) {
+  if (desiciones[pantallaActual]) {
     DibujarBotones();
   }
 }
@@ -46,23 +44,17 @@ function DibujarBotones() {
 }
 
 function keyPressed() {
-  if (pantallaActual == 6 || pantallaActual == 8 || pantallaActual == 13) {
-    if (keyCode === ENTER) { 
+  if (pantallaActual === 6 || pantallaActual === 8 || pantallaActual === 13 || pantallaActual === 16) {
+    if (keyCode === ENTER && pantallaActual !== 16) {
       pantallaActual = 0; 
-    }    
-  }
-  else if (pantallaActual == 16) {
-    if (keyCode === RIGHT_ARROW) { 
-      pantallaActual = 6;
+    } else if (pantallaActual === 16 && keyCode === RIGHT_ARROW) {
+      pantallaActual = 6; 
     }
-  }
-   else {
-    if (!(pantallaActual == 3 || pantallaActual == 8 || pantallaActual == 11)) {
-      if (keyCode === RIGHT_ARROW && pantallaActual < 17) { 
-        pantallaActual++;
-      } else if (keyCode === LEFT_ARROW && pantallaActual > 0) { 
-        pantallaActual--;
-      }
+  } else if (!desiciones[pantallaActual]) {
+    if (keyCode === RIGHT_ARROW && pantallaActual < 17) { 
+      pantallaActual++;
+    } else if (keyCode === LEFT_ARROW && pantallaActual > 0) { 
+      pantallaActual--;
     }
   }
 }
@@ -74,10 +66,10 @@ function mousePressed() {
       pantallaActual = decisionesPantalla[0];
     } else if (mouseX > width / 2 + 50 && mouseX < width / 2 + 150 && mouseY > height - 50 && mouseY < height - 20) {
       pantallaActual = decisionesPantalla[1]; 
-      }
+    }
   }
 }
 
 function obtenerDecisiones(pantalla) {
-  return decisionesConDatos[pantalla] || null;
+  return desiciones[pantalla] || null;
 }
