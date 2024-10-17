@@ -1,3 +1,15 @@
+/* Alee descargate de nuevo la carpeta data porque modifique los nombres de las img para que sea mas simple
+
+pude arreglar:
+los textos que se adapten al ancho y sus contenedores (los rects de color para poder leer)
+tambien los botones que avanzan/retroceden de pantallas
+
+lo que queda:
+agregar las pantallas de inicio y creditos
+estoy viendo como hacer lo de dibujarpantallas como un arreglo asociativo (el ejemplo que paso de p1 p2 etc a discord) ver refes en https://p5js.org/es/reference/p5/Array/
+dibujar las pantallas de decisiones con botones OPCIONA y OPCIONB
+
+*/
 let pantallaActual = 1;
 let imagenes = [];
 let textos = [];
