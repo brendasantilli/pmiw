@@ -30,48 +30,51 @@ function DibujarTextoConFondo() {
   let padding = 30;
   let texto = textos[pantallaActual];
   let anchoTextoMaximo = 580;
-  let rectX = width / 2; 
+  let rectX = width / 2;
   let rectY = height - 200;
 
   fill(0, 0, 0, 150);
   noStroke();
   rectMode(CENTER, CENTER);
-  rect(rectX, rectY, anchoTextoMaximo + padding, 80 + padding); 
-  
+  rect(rectX, rectY, anchoTextoMaximo + padding, 80 + padding);
+
   fill(255);
   textSize(20);
-  textAlign(CENTER, TOP); 
+  textAlign(CENTER, TOP);
   textWrap(WORD);
-  text(texto, rectX, rectY - padding, anchoTextoMaximo); 
+  text(texto, rectX, rectY - padding, anchoTextoMaximo);
 }
 
 function dibujarBotones() {
-
-  fill(0, 255, 0); 
-  rect(width - 120, height - 60, 100, 40); 
+  anchoBotones = 100;
+  altoBotones = 40;
+  botonSigX = width - 120;
+  botonesY = height - 60;
+  botonAntX = 100;
+  fill(0, 255, 0);
+  rect(botonSigX, botonesY, anchoBotones, altoBotones);
   fill(255);
   textSize(16);
   textAlign(CENTER, CENTER);
-  text("Siguiente", width - 120, height - 60); 
+  text("Siguiente", botonSigX, botonesY);
 
   if (pantallaActual > 1) {
-    fill(255, 0, 0); 
-    rect(100, height - 60, 100, 40); 
+    fill(255, 0, 0);
+    rect(botonAntX, botonesY, anchoBotones, altoBotones);
     fill(255);
-    text("Anterior", 100, height - 60); 
+    text("Anterior", botonAntX, botonesY);
   }
 }
 
 function mousePressed() {
-  if (mouseY >= height - 60 && mouseY <= height - 20) {
-    if (mouseX >= width - 120 && mouseX <= width - 20) {
+  if (mouseY >= botonesY && mouseY <= botonesY + altoBotones) {
+    if (mouseX >= botonSigX && mouseX <= botonSigX + anchoBotones) {
       irPantallaSiguiente();
-    } else if (pantallaActual > 1 && mouseX >= 20 && mouseX <= 120) { // Posiciones ajustadas para el botón "Anterior"
-      irPantallaAnterior();
-    }
+    } else if (mouseX >= botonAntX && mouseX <= botonAntX + anchoBotones) {
+        irPantallaAnterior();
+      }
   }
 }
-
 function irPantallaAnterior() {
   if (pantallaActual > 1) {
     pantallaActual--;
