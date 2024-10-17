@@ -28,11 +28,11 @@ function setup() {
 
 function draw() {
   background(220);
-  DibujarTextoConFondo();
+  dibujarPantallas();
   dibujarBotones();
 }
 
-function DibujarTextoConFondo() {
+function dibujarPantallas() {
   image(imagenes[pantallaActual], 0, 0, width, height);
 
   let padding = 30;
