@@ -3,10 +3,12 @@
 pude arreglar:
 los textos que se adapten al ancho y sus contenedores (los rects de color para poder leer)
 tambien los botones que avanzan/retroceden de pantallas
+estoy viendo como hacer lo de dibujarpantallas como un arreglo asociativo (el ejemplo que paso de p1 p2 etc a discord)
+asi podriamos sumar pantalla 0 (inicio) y 18 (creditos)
+ver refes en https://p5js.org/es/reference/p5/Array/
 
 lo que queda:
 agregar las pantallas de inicio y creditos
-estoy viendo como hacer lo de dibujarpantallas como un arreglo asociativo (el ejemplo que paso de p1 p2 etc a discord) ver refes en https://p5js.org/es/reference/p5/Array/
 dibujar las pantallas de decisiones con botones OPCIONA y OPCIONB
 
 */
