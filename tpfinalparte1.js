@@ -46,26 +46,27 @@ function DibujarTextoConFondo() {
 }
 
 function dibujarBotones() {
+
   fill(0, 255, 0); 
-  rect(width - 110, height - 50, 100, 40); 
+  rect(width - 120, height - 60, 100, 40); 
   fill(255);
   textSize(16);
   textAlign(CENTER, CENTER);
-  text("Siguiente", width-110 , height-30); 
+  text("Siguiente", width - 120, height - 60); 
 
   if (pantallaActual > 1) {
     fill(255, 0, 0); 
-    rect(10, height - 50, 100, 40); 
+    rect(100, height - 60, 100, 40); 
     fill(255);
-    text("Anterior", 60, height - 30); 
+    text("Anterior", 100, height - 60); 
   }
 }
 
 function mousePressed() {
-  if (mouseY >= height - 50 && mouseY <= height - 10) {
-    if (mouseX >= width - 110 && mouseX <= width - 10) {
+  if (mouseY >= height - 60 && mouseY <= height - 20) {
+    if (mouseX >= width - 120 && mouseX <= width - 20) {
       irPantallaSiguiente();
-    } else if (pantallaActual > 1 && mouseX >= 10 && mouseX <= 110) {
+    } else if (pantallaActual > 1 && mouseX >= 20 && mouseX <= 120) { // Posiciones ajustadas para el botón "Anterior"
       irPantallaAnterior();
     }
   }
