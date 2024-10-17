@@ -1,11 +1,19 @@
-let pantallaActual = 1; 
+let pantallaActual = 1;
 let imagenes = [];
 let textos = [];
+let anchoBotones = [];
+let altoBotones = [];
+let botonesY = [];
+let botonSigX = [];
+let botonAntX = [];
 let desiciones = {
-  4: [5, 8],
-  9: [10, 11],
-  12: [13, 15]
-};
+  4:
+[5, 8],
+  9:
+[10, 11],
+  12:
+[13, 15]
+  };
 
 function preload() {
   for (let i = 1; i <= 17; i++) {
@@ -67,12 +75,12 @@ function dibujarBotones() {
 }
 
 function mousePressed() {
-  if (mouseY >= botonesY && mouseY <= botonesY + altoBotones) {
-    if (mouseX >= botonSigX && mouseX <= botonSigX + anchoBotones) {
+  if (mouseY >= botonesY - (altoBotones/2) && mouseY <=botonesY + (altoBotones/2)) {
+    if (mouseX >= botonSigX - (anchoBotones/2) && mouseX <= botonSigX + (anchoBotones/2)) {
       irPantallaSiguiente();
-    } else if (mouseX >= botonAntX && mouseX <= botonAntX + anchoBotones) {
-        irPantallaAnterior();
-      }
+    } else if (mouseX >= botonAntX - (anchoBotones/2) && mouseX <= botonAntX + (anchoBotones/2)) {
+      irPantallaAnterior();
+    }
   }
 }
 function irPantallaAnterior() {
