@@ -1,17 +1,3 @@
-/* Alee descargate de nuevo la carpeta data porque modifique los nombres de las img para que sea mas simple
-
-pude arreglar:
-los textos que se adapten al ancho y sus contenedores (los rects de color para poder leer)
-tambien los botones que avanzan/retroceden de pantallas
-estoy viendo como hacer lo de dibujarpantallas como un arreglo asociativo (el ejemplo que paso de p1 p2 etc a discord)
-asi podriamos sumar pantalla 0 (inicio) y 18 (creditos)
-ver refes en https://p5js.org/es/reference/p5/Array/
-
-lo que queda:
-agregar las pantallas de inicio y creditos
-dibujar las pantallas de decisiones con botones OPCIONA y OPCIONB
-
-*/
 let pantallaActual = 1;
 let imagenes = [];
 let textos = [];
@@ -21,12 +7,9 @@ let botonesY = [];
 let botonSigX = [];
 let botonAntX = [];
 let desiciones = {
-  4:
-[5, 8],
-  9:
-[10, 11],
-  12:
-[13, 15]
+  4:[5, 8],
+  9:[10, 11],
+  12:[13, 15]
   };
 
 function preload() {
@@ -46,7 +29,7 @@ function draw() {
   dibujarBotones();
 }
 
-function dibujarPantallas() {
+function  dibujarPantallas() {
   image(imagenes[pantallaActual], 0, 0, width, height);
 
   let padding = 30;
@@ -80,26 +63,13 @@ function dibujarBotones() {
   textAlign(CENTER, CENTER);
   text("Siguiente", botonSigX, botonesY);
 
-  if (pantallaActual > 1) {
-    fill(255, 0, 0);
-    rect(botonAntX, botonesY, anchoBotones, altoBotones);
-    fill(255);
-    text("Anterior", botonAntX, botonesY);
-  }
 }
 
 function mousePressed() {
   if (mouseY >= botonesY - (altoBotones/2) && mouseY <=botonesY + (altoBotones/2)) {
     if (mouseX >= botonSigX - (anchoBotones/2) && mouseX <= botonSigX + (anchoBotones/2)) {
       irPantallaSiguiente();
-    } else if (mouseX >= botonAntX - (anchoBotones/2) && mouseX <= botonAntX + (anchoBotones/2)) {
-      irPantallaAnterior();
     }
-  }
-}
-function irPantallaAnterior() {
-  if (pantallaActual > 1) {
-    pantallaActual--;
   }
 }
 
