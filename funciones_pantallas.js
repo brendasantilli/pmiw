@@ -33,7 +33,7 @@ function dibujarPantallas() {
 
 function PantallaCreditos() {
   background(216, 191, 216);
-  fill(255, 182, 193);
+  fill(255, 50, 100);
   textAlign(CENTER, TOP);
   textSize(45);
   text("Kiki's Delivery Service", width / 2, 100);
