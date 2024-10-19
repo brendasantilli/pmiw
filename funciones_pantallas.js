@@ -41,7 +41,9 @@ function PantallaCreditos() {
 }
 
 function irPantallaSiguiente() {
-  if (pantallaActual < 18) {
+    if (pantallaActual === 17) {
+    pantallaActual = 7;
+  } else if (pantallaActual < 18) {
     pantallaActual++;
   }
 }

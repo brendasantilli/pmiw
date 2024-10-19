@@ -1,16 +1,19 @@
 let pantallaActual = 0;
 let imagenes = [];
 let textos = [];
-let sonidos = {};
+let sonidos = [];
 let Pantallas = ["inicio", 1, 2, 3, 4,
   5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
   16, 17, "creditos"];
 let decisiones = {4:
-[5, 8], 9:
-[10, 11], 12:
-[13, 15]};
-let anchoBotones;
-let altoBotones;
+[5, 8],
+  9:
+[10, 11],
+  12:
+[13, 15]
+  };
+let anchoBotones = 100;
+let altoBotones = 40;
 let botonesY;
 let botonSigX;
 
@@ -19,16 +22,17 @@ function preload() {
     imagenes[i] = loadImage("data/pantalla" + i + ".jpeg");
   }
   textos = loadStrings('data/textos.txt');
-    soundFormats('mp3');
-  sonidos['inicio'] = loadSound('data/inicio.mp3');
-  sonidos['boton'] = loadSound('data/boton.mp3');
-  sonidos['creditos'] = loadSound('data/creditos.mp3');
+
+  soundFormats('mp3');
+
+  sonidos[0] = loadSound('data/sonido_fondo.mp3');
+  sonidos[1] = loadSound('data/sonido_decisiones.mp3');
+  sonidos[2] = loadSound('data/sonido_finales.mp3');
 }
 
 function setup() {
   createCanvas(640, 480);
-  anchoBotones = 100;
-  altoBotones = 40;
+  sonidos[0].loop();
 }
 
 function draw() {
@@ -37,16 +41,27 @@ function draw() {
     PantallaInicio();
   } else  if (Pantallas[pantallaActual] === 4 || Pantallas[pantallaActual] === 9 || Pantallas[pantallaActual] === 12 ) {
     dibujarPantallas();
+    if (!sonidos[1].isPlaying()) {
+      sonidos[0].stop();
+      sonidos[1].play();
+    }
     dibujarBotonesDecision();
   } else  if (Pantallas[pantallaActual] === 7 || Pantallas[pantallaActual] === 10 || Pantallas[pantallaActual] === 14 ) {
     dibujarPantallas();
-    botonReiniciar()
+    if (!sonidos[2].isPlaying()) {
+      sonidos[0].stop();
+      sonidos[2].play();
+    }
+    botonCreditos();
   } else if (Pantallas[pantallaActual] === "creditos") {
     PantallaCreditos();
     botonReiniciar();
   } else {
     dibujarPantallas();
     botonSiguiente();
+    if (!sonidos[0].isPlaying()) {
+      sonidos[0].loop();
+    }
   }
 }
 function mousePressed() {
