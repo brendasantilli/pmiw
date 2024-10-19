@@ -38,13 +38,3 @@ function botonReiniciar(){
   textSize(15);
   text("Volver a jugar", width / 2, height / 2 + 145);
 }
-function botonCreditos() {
-  botonSigX = width - 120;
-  botonesY = height - 60;
-  fill(200); 
-  rect(botonSigX, botonesY, anchoBotones, altoBotones);
-  fill(0); 
-  textSize(16);
-  textAlign(CENTER, CENTER);
-  text("Créditos", botonSigX, botonesY);
-}
