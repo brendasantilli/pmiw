@@ -32,16 +32,28 @@ function dibujarPantallas() {
 }
 
 function PantallaCreditos() {
-  background(50);
+  background(216, 191, 216);
+  fill(255, 182, 193);
+  textAlign(CENTER, TOP);
+  textSize(45);
+  text("Kiki's Delivery Service", width / 2, 100);
   fill(255);
-  textAlign(CENTER);
+  textSize(35);
+  text("de Hayao Miyazaki", width / 2, 160);
   textSize(20);
-  text("Alexia Roberts", width / 2, height / 2 - 20);
-  text("Brenda Santilli", width / 2, height / 2 + 20);
+  text("Una aventura gráfica de", width / 2, 230 );
+  fill(50);
+  textSize(30);
+  text("Alexia Roberts", width / 2, 270 );
+  text("Brenda Santilli", width / 2, 300);
 }
 
 function irPantallaSiguiente() {
-  if (pantallaActual < 18) {
+  if (pantallaActual === 17) {
+    pantallaActual = 7;
+  } else  if (pantallaActual === 7 || Pantallas[pantallaActual] === 10 || Pantallas[pantallaActual] === 14) {
+    pantallaActual = 18;
+  } else if (pantallaActual < 18) {
     pantallaActual++;
   }
 }
