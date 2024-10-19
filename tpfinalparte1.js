@@ -3,7 +3,7 @@ let imagenes = [];
 let textos = [];
 let sonidos = [];
 let Pantallas = [0, 1, 2, 3, 4, 5, 6, 7,
-8, 9, 10,11, 12, 13, 14, 15, 16, 17, 18];
+  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 let decisiones = {4:
 [5, 8],
   9:
@@ -29,7 +29,6 @@ function preload() {
 
 function setup() {
   createCanvas(640, 480);
-  sonidos[0].loop();
 }
 
 function draw() {
@@ -58,10 +57,10 @@ function draw() {
     }
   } else {
     dibujarPantallas();
-    botonSiguiente();
     if (!sonidos[0].isPlaying()) {
       sonidos[0].loop();
     }
+    botonSiguiente();
   }
 }
 
