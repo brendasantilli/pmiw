@@ -1,22 +1,13 @@
-/* Alee descargate de nuevo la carpeta data porque modifique los nombres de las img para que sea mas simple
-
-pude arreglar:
-los textos que se adapten al ancho y sus contenedores (los rects de color para poder leer)
-tambien los botones que avanzan/retroceden de pantallas
-estoy viendo como hacer lo de dibujarpantallas como un arreglo asociativo (el ejemplo que paso de p1 p2 etc a discord)
-asi podriamos sumar pantalla 0 (inicio) y 18 (creditos)
-ver refes en https://p5js.org/es/reference/p5/Array/
-
-lo que queda:
-agregar las pantallas de inicio y creditos
-dibujar las pantallas de decisiones con botones OPCIONA y OPCIONB
-
-*/
 let pantallaActual = 0;
 let imagenes = [];
 let textos = [];
-let Pantallas = ["inicio", "pantalla1", "pantalla2", "pantalla3", "pantalla4", "pantalla5", "pantalla6", "pantalla7", "pantalla8", "pantalla9", "pantalla10", "pantalla11", "pantalla12", "pantalla13", "pantalla14", "pantalla15", "pantalla16", "pantalla17", "creditos"];
-
+let Pantallas = ["inicio", 1, 2, 3, 4,
+  5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+  16, 17, "creditos"];
+let decisiones = {4:
+[5, 8], 9:
+[10, 11], 12:
+[13, 15]};
 let anchoBotones;
 let altoBotones;
 let botonesY;
@@ -37,76 +28,18 @@ function draw() {
   background(220);
   if (Pantallas[pantallaActual] === "inicio") {
     PantallaInicio();
-  } else if (Pantallas[pantallaActual] === "pantalla1") {
+  } else  if (Pantallas[pantallaActual] === 4 || Pantallas[pantallaActual] === 9 || Pantallas[pantallaActual] === 12 ) {
     dibujarPantallas();
-    dibujarBotones();
     dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla2") {
+  } else  if (Pantallas[pantallaActual] === 7 || Pantallas[pantallaActual] === 10 || Pantallas[pantallaActual] === 14 ) {
     dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla3") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla4") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla5") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla6") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla7") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla8") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla9") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla10") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla11") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla12") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla13") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla14") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla15") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla16") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
-  } else if (Pantallas[pantallaActual] === "pantalla17") {
-    dibujarPantallas();
-    dibujarBotones();
-    dibujarBotonesDecision();
+    botonReiniciar()
   } else if (Pantallas[pantallaActual] === "creditos") {
     PantallaCreditos();
+    botonReiniciar()
+  } else {
+    dibujarPantallas();
+    botonSiguiente();
   }
 }
 
@@ -115,23 +48,25 @@ function mousePressed() {
     if (mouseX >= width / 2 - 75 && mouseX <= width / 2 + 75 && mouseY >= height / 2 - 25 && mouseY <= height / 2 + 25) {
       pantallaActual = 1;
     }
-  } else if (Pantallas[pantallaActual] !== "creditos") {
+  } else if (Pantallas[pantallaActual] === "creditos" || pantallaActual === 7 || pantallaActual === 10 || pantallaActual === 14) {
+    if (mouseX >= width / 2 - 100 && mouseX <= width / 2 + 100 && mouseY >= height / 2 + 120 && mouseY <= height / 2 + 180) {
+      pantallaActual = 0;
+    }
+  } else {
     if (mouseY >= botonesY - (altoBotones / 2) && mouseY <= botonesY + (altoBotones / 2)) {
       if (mouseX >= botonSigX - (anchoBotones / 2) && mouseX <= botonSigX + (anchoBotones / 2)) {
         irPantallaSiguiente();
       }
     }
+
     let decisionY = height - 100;
     let botonA_X = width / 2 - 70;
     let botonB_X = width / 2 + 70;
-    if (mouseX >= botonA_X - 60 && mouseX <= botonA_X + 60 && mouseY >= decisionY - 20 && mouseY <= decisionY + 20) {
-    } else if (mouseX >= botonB_X - 60 && mouseX <= botonB_X + 60 && mouseY >= decisionY - 20 && mouseY <= decisionY + 20) {
-    }
-  }
-}
 
-function irPantallaSiguiente() {
-  if (pantallaActual < 18) {
-    pantallaActual++;
+    if (mouseX >= botonA_X - 60 && mouseX <= botonA_X + 60 && mouseY >= decisionY - 20 && mouseY <= decisionY + 20) {
+      pantallaActual = decisiones[Pantallas[pantallaActual]][0];
+    } else if (mouseX >= botonB_X - 60 && mouseX <= botonB_X + 60 && mouseY >= decisionY - 20 && mouseY <= decisionY + 20) {
+      pantallaActual = decisiones[Pantallas[pantallaActual]][1];
+    }
   }
 }
