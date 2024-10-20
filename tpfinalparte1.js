@@ -1,3 +1,5 @@
+//https://youtu.be/yLuDu3xLjvM
+
 let pantallaActual = 0;
 let imagenes = [];
 let textos = [];
