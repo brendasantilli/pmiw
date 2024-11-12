@@ -5,10 +5,9 @@ class Nave {
     this.miColor = color(255, 0, 0);
     this.juego = juego;
   }
-  
+
   dibujar() {
-    fill(this.miColor);
-    rect(this.posX, this.posY, 50, 20);
+    image(imgNave, this.posX - 25, this.posY - 10, 80, 50);
   }
 
   mover() {
@@ -19,8 +18,8 @@ class Nave {
       this.posX += 5;
     }
   }
-  
-    disparar() {
+
+  disparar() {
     this.juego.dispararBala(this.posX + 25, this.posY);
   }
 }
@@ -28,5 +27,6 @@ class Nave {
 function keyPressed() {
   if (key === ' ') {
     objJuego.nave.disparar();
+    sonidoBala.play();
   }
 }

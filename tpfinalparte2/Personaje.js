@@ -8,8 +8,7 @@ class Personaje {
 
   dibujar() {
     if (!this.rescatado) {
-      fill(this.miColor);
-      rect(this.posX, this.posY, 20, 20);
+      image(imgVaca, this.posX - 10, this.posY - 10, 50, 50);
     }
   }
 }

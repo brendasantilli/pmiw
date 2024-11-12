@@ -8,8 +8,7 @@ class Alien {
 
   dibujar() {
     if (this.vida) {
-      fill(this.miColor);
-      ellipse(this.posX, this.posY, 40, 40);
+      image(imgAlien, this.posX - 20, this.posY - 20, 60, 60);
     }
   }
 

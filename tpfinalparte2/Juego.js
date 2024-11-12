@@ -16,8 +16,8 @@ class Juego {
         this.aliens[i].dibujar();
 
         for (let j = 0; j < 20; j++) {
-      if (this.balas[j] && this.aliens[i].estaVivo(this.balas[j])) {
-        this.balas[j].activa = false;
+          if (this.balas[j] && this.aliens[i].estaVivo(this.balas[j])) {
+            this.balas[j].activa = false;
           }
         }
       }
@@ -25,7 +25,7 @@ class Juego {
 
     for (let i = 0; i < 5; i++) {
       if (this.aliens[i].vida) {
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < 10; j++) {
           if (this.aliens[i].posY + 20 > this.personajes[j].posY) {
             this.personajes[j].rescatado = true;
           }
@@ -33,13 +33,13 @@ class Juego {
       }
     }
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       if (this.balas[i] && this.balas[i].activa) {
         this.balas[i].dibujar();
         this.balas[i].mover();
       }
     }
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       this.personajes[i].dibujar();
     }
   }
@@ -55,7 +55,7 @@ class Juego {
 
   crearPersonajes() {
     this.personajes = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       let x = random(width);
       let y = random(height - 100, height - 50);
       this.personajes.push(new Personaje(x, y));
