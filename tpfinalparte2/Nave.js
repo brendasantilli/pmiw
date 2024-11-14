@@ -39,22 +39,10 @@ class Nave {
     }
   }
 
-  disparar() {
+   disparar() {
     this.juego.dispararBala(this.posX + 25, this.posY);
-    sonidoBala.play();
+    if (sonidoBala.isLoaded()) {
+      sonidoBala.play();
+    }
   }
 }
-
-
-/* moverIzquierda() {
-    if (this.posX > 0) {
-      this.posX -= 5;
-    }
-  }
-
-  moverDerecha() {
-    if (this.posX < width) {
-      this.posX += 5;
-    }
-  }
-  */

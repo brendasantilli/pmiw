@@ -36,7 +36,7 @@ class Juego {
 
   verificarColision(alien, personaje) {
     let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
-    return distancia < 30; // Ajusta el valor según el tamaño de los personajes
+    return distancia < 40;
   }
 
   verificarColisiones() {
