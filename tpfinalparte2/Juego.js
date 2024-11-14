@@ -1,52 +1,57 @@
 class Juego {
-  constructor() {
+  constructor(cantidadAliens, cantidadPersonajes) {
+    this.cantidadAliens = cantidadAliens;
+    this.cantidadPersonajes = cantidadPersonajes;
+    this.aliens = [];
+    this.balas = [];
+    this.personajes = [];
     this.crearAliens();
     this.crearNave();
     this.crearPersonajes();
-    this.balas = [];
   }
 
   dibujar() {
     this.nave.dibujar();
-    this.nave.mover();
+    this.dibujarAliens();
+    this.dibujarBalas();
+    this.dibujarPersonajes();
+  }
 
-    for (let i = 0; i < 10; i++) {
-      if (this.aliens[i] && this.aliens[i].vida) {
-        this.aliens[i].mover();
-        this.aliens[i].dibujar();
+  actualizar() {
+    this.verificarColisiones();
+    this.verificarColisionesAliensVacas();
+  }
 
-        for (let j = 0; j < 20; j++) {
-          if (this.balas[j] && this.aliens[i].estaVivo(this.balas[j])) {
-            this.balas[j].activa = false;
-          }
-        }
-      }
-    }
-
-    for (let i = 0; i < 5; i++) {
+  verificarColisionesAliensVacas() {
+    for (let i = 0; i < this.aliens.length; i++) {
       if (this.aliens[i].vida) {
-        for (let j = 0; j < 10; j++) {
-          if (this.aliens[i].posY + 20 > this.personajes[j].posY) {
+        for (let j = 0; j < this.personajes.length; j++) {
+          if (!this.personajes[j].rescatado && this.verificarColision(this.aliens[i], this.personajes[j])) {
             this.personajes[j].rescatado = true;
           }
         }
       }
     }
+  }
 
-    for (let i = 0; i < 10; i++) {
-      if (this.balas[i] && this.balas[i].activa) {
-        this.balas[i].dibujar();
-        this.balas[i].mover();
+  verificarColision(alien, personaje) {
+    let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
+    return distancia < 30; // Ajusta el valor según el tamaño de los personajes
+  }
+
+  verificarColisiones() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      for (let j = 0; j < this.balas.length; j++) {
+        if (this.aliens[i].fueDisparado(this.balas[j])) {
+          this.aliens[i].vida = false;
+          this.balas[j].disparada = false;
+        }
       }
-    }
-    for (let i = 0; i < 10; i++) {
-      this.personajes[i].dibujar();
     }
   }
 
   crearAliens() {
-    this.aliens = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < this.cantidadAliens; i++) {
       let x = random(width);
       let y = random(-200, 0);
       this.aliens.push(new Alien(x, y));
@@ -54,8 +59,7 @@ class Juego {
   }
 
   crearPersonajes() {
-    this.personajes = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < this.cantidadPersonajes; i++) {
       let x = random(width);
       let y = random(height - 100, height - 50);
       this.personajes.push(new Personaje(x, y));
@@ -68,5 +72,33 @@ class Juego {
 
   dispararBala(x, y) {
     this.balas.push(new Bala(x, y));
+  }
+
+  teclaPresionada(keyCode) {
+    this.nave.teclaPresionada(keyCode);
+  }
+
+  teclaSoltada(keyCode) {
+    this.nave.teclaSoltada(keyCode);
+  }
+
+  dibujarAliens() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      this.aliens[i].dibujar();
+    }
+  }
+
+  dibujarBalas() {
+    for (let i = 0; i < this.balas.length; i++) {
+      this.balas[i].dibujar();
+    }
+  }
+
+  dibujarPersonajes() {
+    for (let i = 0; i < this.personajes.length; i++) {
+      if (!this.personajes[i].rescatado) {
+        this.personajes[i].dibujar();
+      }
+    }
   }
 }

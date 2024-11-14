@@ -2,31 +2,59 @@ class Nave {
   constructor(x, y, juego) {
     this.posX = x;
     this.posY = y;
-    this.miColor = color(255, 0, 0);
     this.juego = juego;
+    this.movIzquierda = false;
+    this.movDerecha = false;
   }
 
   dibujar() {
     image(imgNave, this.posX - 25, this.posY - 10, 80, 50);
+    this.actualizarMovimiento();
   }
 
-  mover() {
-    if (keyIsDown(LEFT_ARROW) && this.posX > 0) {
+  teclaPresionada(keyCode) {
+    if (keyCode === LEFT_ARROW) {
+      this.movIzquierda = true;
+    } else if (keyCode === RIGHT_ARROW) {
+      this.movDerecha = true;
+    } else if (keyCode === 32) {
+      this.disparar();
+    }
+  }
+
+  teclaSoltada(keyCode) {
+    if (keyCode === LEFT_ARROW) {
+      this.movIzquierda = false;
+    } else if (keyCode === RIGHT_ARROW) {
+      this.movDerecha = false;
+    }
+  }
+
+  actualizarMovimiento() {
+    if (this.movIzquierda) {
       this.posX -= 5;
     }
-    if (keyIsDown(RIGHT_ARROW) && this.posX < width - 50) {
+    if (this.movDerecha) {
       this.posX += 5;
     }
   }
 
   disparar() {
     this.juego.dispararBala(this.posX + 25, this.posY);
-  }
-}
-
-function keyPressed() {
-  if (key === ' ') {
-    objJuego.nave.disparar();
     sonidoBala.play();
   }
 }
+
+
+/* moverIzquierda() {
+    if (this.posX > 0) {
+      this.posX -= 5;
+    }
+  }
+
+  moverDerecha() {
+    if (this.posX < width) {
+      this.posX += 5;
+    }
+  }
+  */

@@ -3,7 +3,6 @@ class Personaje {
     this.posX = x;
     this.posY = y;
     this.rescatado = false;
-    this.miColor = color(0, 0, 255);
   }
 
   dibujar() {

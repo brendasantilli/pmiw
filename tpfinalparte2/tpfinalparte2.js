@@ -10,10 +10,19 @@ function preload() {
 
 function setup() {
   createCanvas(640, 480);
-  objJuego = new Juego();
+  objJuego = new Juego(10, 5);
 }
 
 function draw() {
   background(200);
+  objJuego.actualizar(); 
   objJuego.dibujar();
+}
+
+function keyPressed() {
+  objJuego.teclaPresionada(keyCode);
+}
+
+function keyReleased() {
+  objJuego.teclaSoltada(keyCode);
 }
