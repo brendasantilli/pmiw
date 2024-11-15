@@ -1,5 +1,6 @@
 class Juego {
   constructor(cantidadAliens, cantidadPersonajes) {
+    this.estado = "inicio"; // Estado inicial
     this.cantidadAliens = cantidadAliens;
     this.cantidadPersonajes = cantidadPersonajes;
     this.aliens = [];
@@ -8,13 +9,20 @@ class Juego {
     this.crearAliens();
     this.crearNave();
     this.crearPersonajes();
+    principal = new Principal(this, width / 2, height / 2); // Instancia de Principal
   }
 
   dibujar() {
-    this.nave.dibujar();
-    this.dibujarAliens();
-    this.dibujarBalas();
-    this.dibujarPersonajes();
+    if (this.estado === "inicio") {
+      principal.dibujarInstrucciones();  // Dibujar instrucciones
+    } else if (this.estado === "juego") {
+      this.nave.dibujar();
+      this.dibujarAliens();
+      this.dibujarBalas();
+      this.dibujarPersonajes();
+    } else if (this.estado === "creditos") {
+      principal.dibujarCreditos();  // Dibujar créditos
+    }
   }
 
   actualizar() {
@@ -72,14 +80,6 @@ class Juego {
 
   dispararBala(x, y) {
     this.balas.push(new Bala(x, y));
-  }
-
-  teclaPresionada(keyCode) {
-    this.nave.teclaPresionada(keyCode);
-  }
-
-  teclaSoltada(keyCode) {
-    this.nave.teclaSoltada(keyCode);
   }
 
   dibujarAliens() {
