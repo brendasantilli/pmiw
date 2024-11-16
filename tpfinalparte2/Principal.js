@@ -60,7 +60,6 @@ class Principal {
     }
   }
 
-
   dibujarBoton() {
     fill(68, 189, 50);
     rect(this.botonX, this.botonY, this.botonAncho, this.botonAlto);
@@ -68,15 +67,14 @@ class Principal {
     textSize(18);
     text("Jugar", this.botonX + this.botonAncho / 2, this.botonY + this.botonAlto / 2);
   }
-
   mousePressed() {
     if (mouseX > this.botonX &&
       mouseX < this.botonX + this.botonAncho &&
       mouseY > this.botonY &&
       mouseY < this.botonY + this.botonAlto) {
       console.log("Botón presionado");
-      this.juego.estado = "juego";
-      this.juego.iniciar();
+      this.juego.iniciar();  // Reiniciar el juego
+      this.juego.estado = "juego";  // Cambiar al estado de juego
     }
   }
 }

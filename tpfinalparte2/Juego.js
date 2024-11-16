@@ -12,6 +12,32 @@ class Juego {
     this.principal = new Principal(this, width / 2, height / 2);
   }
 
+  iniciar() {
+    this.estado = "inicio";
+    this.aliens = [];
+    this.personajes = [];
+    this.balas = [];
+    this.crearAliens();
+    this.crearPersonajes();
+    this.crearNave();
+  }
+  
+  dibujar() {
+    if (this.estado === "inicio") {
+      this.principal.dibujarInicio();
+    } else if (this.estado === "juego") {
+      image(imgGranja, 0, 0, width, height);
+      this.nave.dibujar();
+      this.dibujarAliens();
+      this.dibujarBalas();
+      this.dibujarPersonajes();
+    } else if (this.estado === "perdiste") {
+      this.principal.dibujarPerdiste();
+    } else if (this.estado === "ganaste") {
+      this.principal.dibujarGanaste();
+    }
+  }
+
   crearAliens() {
     for (let i = 0; i < this.cantidadAliens; i++) {
       let x = random(width);
@@ -29,13 +55,13 @@ class Juego {
   }
 
   crearNave() {
-    this.nave = new Nave(width / 2, height -  180, this);
+    this.nave = new Nave(width / 2, height - 180, this);
   }
 
   actualizar() {
     this.verificarSecuestros();
     this.verificarAliensDisparados();
-    
+
     if (this.verificarPerdiste()) {
       this.estado = "perdiste";
     } else if (this.verificarGanaste()) {
@@ -87,31 +113,6 @@ class Juego {
   verificarColision(alien, personaje) {
     let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
     return distancia < 40;
-  }
-
-  verificarRescates() {
-    for (let i = 0; i < this.personajes.length; i++) {
-      if (!this.personajes[i].rescatado) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  dibujar() {
-    if (this.estado === "inicio") {
-      this.principal.dibujarInicio();
-    } else if (this.estado === "juego") {
-      image(imgGranja, 0, 0, width, height);
-      this.nave.dibujar();
-      this.dibujarAliens();
-      this.dibujarBalas();
-      this.dibujarPersonajes();
-    } else if (this.estado === "perdiste") {
-      this.principal.dibujarPerdiste();
-    } else if (this.estado === "ganaste") {
-      this.principal.dibujarGanaste();
-    }
   }
 
   dibujarAliens() {
