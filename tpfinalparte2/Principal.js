@@ -90,8 +90,8 @@ dibujarInicio() {
       mouseY > this.botonY &&
       mouseY < this.botonY + this.botonAlto) {
       console.log("Botón presionado");
-      this.juego.iniciar();  // Reiniciar el juego
-      this.juego.estado = "juego";  // Cambiar al estado de juego
+      this.juego.iniciar();
+      this.juego.estado = "juego";
     }
   }
 }
