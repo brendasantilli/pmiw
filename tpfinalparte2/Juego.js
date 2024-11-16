@@ -12,61 +12,6 @@ class Juego {
     this.principal = new Principal(this, width / 2, height / 2);
   }
 
-  dibujar() {
-    if (this.estado === "inicio") {
-      this.principal.dibujarInicio();
-    } else if (this.estado === "juego") {
-      image(imgGranja, 0, 0, width, height);
-      this.nave.dibujar();
-      this.dibujarAliens();
-      this.dibujarBalas();
-      this.dibujarPersonajes();
-    } else if (this.estado === "perdiste") {
-      this.principal.dibujarPerdiste();
-    } else if (this.estado === "ganaste") {
-      this.principal.dibujarGanaste();
-    }
-  }
-
-  actualizar() {
-    this.verificarColisiones();
-    this.verificarColisionesAliensVacas();
-
-    if (this.verificarPerdiste()) {
-      this.estado = "perdiste";
-    } else if (this.verificarGanaste()) {
-      this.estado = "ganaste";
-    }
-  }
-
-  verificarColisionesAliensVacas() {
-    for (let i = 0; i < this.aliens.length; i++) {
-      if (this.aliens[i].vida) {
-        for (let j = 0; j < this.personajes.length; j++) {
-          if (!this.personajes[j].rescatado && this.verificarColision(this.aliens[i], this.personajes[j])) {
-            this.personajes[j].rescatado = true;
-          }
-        }
-      }
-    }
-  }
-
-  verificarColision(alien, personaje) {
-    let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
-    return distancia < 40;
-  }
-
-  verificarColisiones() {
-    for (let i = 0; i < this.aliens.length; i++) {
-      for (let j = 0; j < this.balas.length; j++) {
-        if (this.aliens[i].fueDisparado(this.balas[j])) {
-          this.aliens[i].vida = false;
-          this.balas[j].disparada = false;
-        }
-      }
-    }
-  }
-
   crearAliens() {
     for (let i = 0; i < this.cantidadAliens; i++) {
       let x = random(width);
@@ -87,16 +32,86 @@ class Juego {
     this.nave = new Nave(width / 2, height -  180, this);
   }
 
-  dispararBala(x, y) {
-    this.balas.push(new Bala(x, y));
+  actualizar() {
+    this.verificarSecuestros();
+    this.verificarAliensDisparados();
+    
+    if (this.verificarPerdiste()) {
+      this.estado = "perdiste";
+    } else if (this.verificarGanaste()) {
+      this.estado = "ganaste";
+    }
   }
 
-  teclaPresionada(keyCode) {
-    this.nave.teclaPresionada(keyCode);
+  verificarSecuestros() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      if (this.aliens[i].vida) {
+        for (let j = 0; j < this.personajes.length; j++) {
+          if (!this.personajes[j].rescatado && this.verificarColision(this.aliens[i], this.personajes[j])) {
+            this.personajes[j].rescatado = true;
+          }
+        }
+      }
+    }
   }
 
-  teclaSoltada(keyCode) {
-    this.nave.teclaSoltada(keyCode);
+  verificarAliensDisparados() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      for (let j = 0; j < this.balas.length; j++) {
+        if (this.aliens[i].fueDisparado(this.balas[j])) {
+          this.aliens[i].vida = false;
+          this.balas[j].disparada = false;
+        }
+      }
+    }
+  }
+
+  verificarPerdiste() {
+    for (let i = 0; i < this.personajes.length; i++) {
+      if (!this.personajes[i].rescatado) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  verificarGanaste() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      if (this.aliens[i].vida) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  verificarColision(alien, personaje) {
+    let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
+    return distancia < 40;
+  }
+
+  verificarRescates() {
+    for (let i = 0; i < this.personajes.length; i++) {
+      if (!this.personajes[i].rescatado) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  dibujar() {
+    if (this.estado === "inicio") {
+      this.principal.dibujarInicio();
+    } else if (this.estado === "juego") {
+      image(imgGranja, 0, 0, width, height);
+      this.nave.dibujar();
+      this.dibujarAliens();
+      this.dibujarBalas();
+      this.dibujarPersonajes();
+    } else if (this.estado === "perdiste") {
+      this.principal.dibujarPerdiste();
+    } else if (this.estado === "ganaste") {
+      this.principal.dibujarGanaste();
+    }
   }
 
   dibujarAliens() {
@@ -119,21 +134,15 @@ class Juego {
     }
   }
 
-  verificarPerdiste() {
-    for (let i = 0; i < this.personajes.length; i++) {
-      if (!this.personajes[i].rescatado) {
-        return false;
-      }
-    }
-    return true;
+  dispararBala(x, y) {
+    this.balas.push(new Bala(x, y));
   }
 
-  verificarGanaste() {
-    for (let i = 0; i < this.aliens.length; i++) {
-      if (this.aliens[i].vida) {
-        return false;
-      }
-    }
-    return true;
+  teclaPresionada(keyCode) {
+    this.nave.teclaPresionada(keyCode);
+  }
+
+  teclaSoltada(keyCode) {
+    this.nave.teclaSoltada(keyCode);
   }
 }

@@ -59,7 +59,7 @@ class Principal {
     fill(255);
     text(this.perdiste, this.x, this.y - 50);
     textSize(16);
-    text(this.nombres, this.x, this.y + 30);
+    text(this.creditos, this.x, this.y + 30);
     text("Presiona 'B' para volver", this.x, this.y + 60);
   }
 
