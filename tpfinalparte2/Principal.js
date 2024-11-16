@@ -38,6 +38,10 @@ class Principal {
     text(this.reiniciar, this.x, this.y + 30);
     this.dibujarBoton();
     text(this.creditos, this.x, this.y + 60);
+
+    if (!sonidoPerdiste.isPlaying()) {
+      sonidoPerdiste.play();
+    }
   }
 
   dibujarGanaste() {
@@ -50,18 +54,12 @@ class Principal {
     text(this.reiniciar, this.x, this.y + 30);
     this.dibujarBoton();
     text(this.creditos, this.x, this.y + 60);
+
+    if (!sonidoGanaste.isPlaying()) {
+      sonidoGanaste.play();
+    }
   }
 
-  dibujarCreditos() {
-    background(100);
-    textSize(24);
-    textAlign(CENTER, CENTER);
-    fill(255);
-    text(this.perdiste, this.x, this.y - 50);
-    textSize(16);
-    text(this.creditos, this.x, this.y + 30);
-    text("Presiona 'B' para volver", this.x, this.y + 60);
-  }
 
   dibujarBoton() {
     fill(68, 189, 50);

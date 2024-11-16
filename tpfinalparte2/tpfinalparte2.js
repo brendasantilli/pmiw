@@ -1,5 +1,5 @@
 let objJuego;
-let imgAlien, imgNave, imgVaca, imgGranja, sonidoBala;
+let imgAlien, imgNave, imgVaca, imgGranja, sonidoBala, sonidoGanaste, sonidoPerdiste;
 
 function preload() {
   imgAlien = loadImage('data/alien.png');
@@ -7,6 +7,8 @@ function preload() {
   imgVaca = loadImage('data/vaca.png');
   imgGranja = loadImage('data/granja.png');
   sonidoBala = loadSound('data/sonidoBala.mp3');
+  sonidoGanaste = loadSound('data/sonidoGanaste.mp3');
+  sonidoPerdiste = loadSound('data/sonidoPerdiste.mp3');
 }
 
 function setup() {
