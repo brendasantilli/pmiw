@@ -15,8 +15,8 @@ class Principal {
     this.botonAncho = 200;
     this.botonAlto = 50;
   }
-
-  dibujarInicio() {
+  
+dibujarInicio() {
     background(120, 40, 140);
     textSize(36);
     textAlign(CENTER, CENTER);
@@ -24,13 +24,25 @@ class Principal {
     text(this.bienvenida, this.x, this.y - 150);
     textSize(20);
     text(this.conflicto, this.x, this.y - 100);
+    
     fill(50, 50, 50, 150); 
-    rect(this.x - 200, this.y -60, this.botonAncho + 200, this.botonAlto +80, 20);
+    rect(this.x - 200, this.y - 60, this.botonAncho + 200, this.botonAlto + 80, 20);
+    
+    let padding = 20;
+    let margenX = this.x - 200 + padding;
+    let margenY = this.y - 60 + padding;
+    let anchoTexto = this.botonAncho + 200 - 2 * padding;
+    let altoTexto = this.botonAlto + 80 - 2 * padding;
+
     textSize(18);
     fill(255);
-    text(this.instrucciones, this.x - 300, this.y -250, 600, 500);
+    textAlign(CENTER, TOP);
+    textWrap(WORD);
+    text(this.instrucciones, margenX, margenY, anchoTexto, altoTexto);
+    
     this.dibujarBoton();
-  }
+}
+
 
   dibujarPerdiste() {
     background(255, 102, 102);
@@ -69,6 +81,7 @@ class Principal {
     rect(this.botonX, this.botonY, this.botonAncho, this.botonAlto, 20);
     fill(255);
     textSize(18);
+   textAlign(CENTER, CENTER);
     text("Jugar", this.botonX + this.botonAncho / 2, this.botonY + this.botonAlto / 2);
   }
   mousePressed() {

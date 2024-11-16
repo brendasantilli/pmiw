@@ -3,6 +3,7 @@ class Alien {
     this.posX = x;
     this.posY = y;
     this.vida = true;
+    this.velocidad = 1;
   }
 
   dibujar() {
@@ -14,10 +15,10 @@ class Alien {
 
   mover() {
     if (this.vida) {
-      this.posY += this.velocidad || 1;
-
+      this.posY += this.velocidad;
       if (this.posY > height) {
         this.reaparecer();
+        this.aumentarVelocidad();
       }
     }
   }
@@ -28,7 +29,7 @@ class Alien {
   }
 
   aumentarVelocidad() {
-    this.velocidad = (this.velocidad || 1) + 0.5;
+    this.velocidad += 0.5;
   }
 
   fueDisparado(bala) {
