@@ -9,19 +9,19 @@ class Juego {
     this.crearAliens();
     this.crearNave();
     this.crearPersonajes();
-    principal = new Principal(this, width / 2, height / 2); // Instancia de Principal
+    this.principal = new Principal(this, width / 2, height / 2); // Instancia de Principal como propiedad
   }
 
   dibujar() {
     if (this.estado === "inicio") {
-      principal.dibujarInstrucciones();  // Dibujar instrucciones
+      this.principal.dibujarInstrucciones();  // Accede al método a través de this.principal
     } else if (this.estado === "juego") {
       this.nave.dibujar();
       this.dibujarAliens();
       this.dibujarBalas();
       this.dibujarPersonajes();
     } else if (this.estado === "creditos") {
-      principal.dibujarCreditos();  // Dibujar créditos
+      this.principal.dibujarCreditos();  // Accede al método a través de this.principal
     }
   }
 
@@ -78,8 +78,15 @@ class Juego {
     this.nave = new Nave(width / 2, height - 50, this);
   }
 
-  dispararBala(x, y) {
+ dispararBala(x, y) {
     this.balas.push(new Bala(x, y));
+  }
+
+  teclaPresionada(keyCode) {
+    this.nave.teclaPresionada(keyCode);
+  }
+  teclaSoltada(keyCode) {
+    this.nave.teclaSoltada(keyCode);
   }
 
   dibujarAliens() {
