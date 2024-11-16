@@ -10,12 +10,12 @@ function preload() {
 
 function setup() {
   createCanvas(640, 480);
-  objJuego = new Juego(10, 5);
+  objJuego = new Juego(10, 5); 
 }
 
 function draw() {
   background(200);
-  objJuego.actualizar(); 
+  objJuego.actualizar();
   objJuego.dibujar();
 }
 
@@ -25,4 +25,10 @@ function keyPressed() {
 
 function keyReleased() {
   objJuego.teclaSoltada(keyCode);
+}
+
+function mousePressed() {
+  if (objJuego.estado === "inicio") {
+    objJuego.principal.mousePressed(); 
+  }
 }
