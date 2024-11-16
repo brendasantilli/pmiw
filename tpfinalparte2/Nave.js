@@ -7,24 +7,31 @@ class Nave {
     this.movDerecha = false;
   }
 
-  // Dibuja la nave y actualiza el movimiento
+  
   dibujar() {
     image(imgNave, this.posX - 25, this.posY - 10, 80, 50);
     this.actualizarMovimiento();
   }
 
-  // Mover la nave hacia la izquierda
-  moverIzquierda() {
-    this.posX -= 5;
+  teclaPresionada(keyCode) {
+    if (keyCode === LEFT_ARROW) {
+      this.movIzquierda = true;
+    } else if (keyCode === RIGHT_ARROW) {
+      this.movDerecha = true;
+    } else if (keyCode === 32) {
+      this.disparar();
+    }
   }
-
-  // Mover la nave hacia la derecha
-  moverDerecha() {
-    this.posX += 5;
+  
+  teclaSoltada(keyCode) {
+    if (keyCode === LEFT_ARROW) {
+      this.movIzquierda = false;
+    } else if (keyCode === RIGHT_ARROW) {
+      this.movDerecha = false;
+    }
   }
-
-  // Actualizar el movimiento basado en las teclas presionadas
-  actualizarMovimiento() {
+  
+   actualizarMovimiento() {
     if (this.movIzquierda) {
       this.posX -= 5;
     }
@@ -33,9 +40,8 @@ class Nave {
     }
   }
 
-  // Disparar una bala
-  disparar() {
-    this.juego.dispararBala(this.posX + 25, this.posY);
+   disparar() {
+     this.juego.dispararBala(this.posX + 25, this.posY);
     if (sonidoBala.isLoaded()) {
       sonidoBala.play();
     }
