@@ -6,14 +6,16 @@ class Juego {
     this.aliens = [];
     this.balas = [];
     this.personajes = [];
-    this.crearAliens();
-    this.crearNave();
-    this.crearPersonajes();
     this.principal = new Principal(this, width / 2, height / 2);
-  }
+    this.configurarJuego();
+}
 
   iniciar() {
     this.estado = "inicio";
+    this.configurarJuego();
+  }
+
+  configurarJuego() {
     this.aliens = [];
     this.personajes = [];
     this.balas = [];
@@ -48,7 +50,7 @@ class Juego {
 
   crearPersonajes() {
     for (let i = 0; i < this.cantidadPersonajes; i++) {
-      let x = random(width);
+      let x = random(width - 50);
       let y = random(height - 100, height - 50);
       this.personajes.push(new Personaje(x, y));
     }
