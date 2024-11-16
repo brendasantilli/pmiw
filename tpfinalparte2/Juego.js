@@ -8,11 +8,6 @@ class Juego {
     this.personajes = [];
     this.principal = new Principal(this, width / 2, height / 2);
     this.configurarJuego();
-}
-
-  iniciar() {
-    this.estado = "inicio";
-    this.configurarJuego();
   }
 
   configurarJuego() {
@@ -23,7 +18,7 @@ class Juego {
     this.crearPersonajes();
     this.crearNave();
   }
-  
+
   dibujar() {
     if (this.estado === "inicio") {
       this.principal.dibujarInicio();
@@ -111,6 +106,13 @@ class Juego {
     }
     return true;
   }
+
+
+  reiniciar() {
+    this.estado = "inicio";
+    this.configurarJuego();
+  }
+
 
   verificarColision(alien, personaje) {
     let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
