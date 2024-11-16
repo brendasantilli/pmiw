@@ -1,6 +1,6 @@
 class Juego {
   constructor(cantidadAliens, cantidadPersonajes) {
-    this.estado = "inicio"; // Estado inicial
+    this.estado = "inicio";
     this.cantidadAliens = cantidadAliens;
     this.cantidadPersonajes = cantidadPersonajes;
     this.aliens = [];
@@ -9,25 +9,34 @@ class Juego {
     this.crearAliens();
     this.crearNave();
     this.crearPersonajes();
-    this.principal = new Principal(this, width / 2, height / 2); // Instancia de Principal como propiedad
+    this.principal = new Principal(this, width / 2, height / 2);
   }
 
   dibujar() {
     if (this.estado === "inicio") {
-      this.principal.dibujarInstrucciones();  // Accede al método a través de this.principal
+      this.principal.dibujarInicio();
     } else if (this.estado === "juego") {
+      image(imgGranja, 0, 0, width, height);
       this.nave.dibujar();
       this.dibujarAliens();
       this.dibujarBalas();
       this.dibujarPersonajes();
-    } else if (this.estado === "creditos") {
-      this.principal.dibujarCreditos();  // Accede al método a través de this.principal
+    } else if (this.estado === "perdiste") {
+      this.principal.dibujarPerdiste();
+    } else if (this.estado === "ganaste") {
+      this.principal.dibujarGanaste();
     }
   }
 
   actualizar() {
     this.verificarColisiones();
     this.verificarColisionesAliensVacas();
+
+    if (this.verificarPerdiste()) {
+      this.estado = "perdiste";
+    } else if (this.verificarGanaste()) {
+      this.estado = "ganaste";
+    }
   }
 
   verificarColisionesAliensVacas() {
@@ -75,16 +84,17 @@ class Juego {
   }
 
   crearNave() {
-    this.nave = new Nave(width / 2, height - 50, this);
+    this.nave = new Nave(width / 2, height -  180, this);
   }
 
- dispararBala(x, y) {
+  dispararBala(x, y) {
     this.balas.push(new Bala(x, y));
   }
 
   teclaPresionada(keyCode) {
     this.nave.teclaPresionada(keyCode);
   }
+
   teclaSoltada(keyCode) {
     this.nave.teclaSoltada(keyCode);
   }
@@ -107,5 +117,23 @@ class Juego {
         this.personajes[i].dibujar();
       }
     }
+  }
+
+  verificarPerdiste() {
+    for (let i = 0; i < this.personajes.length; i++) {
+      if (!this.personajes[i].rescatado) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  verificarGanaste() {
+    for (let i = 0; i < this.aliens.length; i++) {
+      if (this.aliens[i].vida) {
+        return false;
+      }
+    }
+    return true;
   }
 }

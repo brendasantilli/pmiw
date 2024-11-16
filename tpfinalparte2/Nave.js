@@ -7,7 +7,6 @@ class Nave {
     this.movDerecha = false;
   }
 
-  
   dibujar() {
     image(imgNave, this.posX - 25, this.posY - 10, 80, 50);
     this.actualizarMovimiento();
@@ -22,7 +21,7 @@ class Nave {
       this.disparar();
     }
   }
-  
+
   teclaSoltada(keyCode) {
     if (keyCode === LEFT_ARROW) {
       this.movIzquierda = false;
@@ -30,8 +29,8 @@ class Nave {
       this.movDerecha = false;
     }
   }
-  
-   actualizarMovimiento() {
+
+  actualizarMovimiento() {
     if (this.movIzquierda) {
       this.posX -= 5;
     }
@@ -40,8 +39,8 @@ class Nave {
     }
   }
 
-   disparar() {
-     this.juego.dispararBala(this.posX + 25, this.posY);
+  disparar() {
+    this.juego.dispararBala(this.posX + 25, this.posY);
     if (sonidoBala.isLoaded()) {
       sonidoBala.play();
     }

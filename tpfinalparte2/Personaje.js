@@ -7,7 +7,7 @@ class Personaje {
 
   dibujar() {
     if (!this.rescatado) {
-      image(imgVaca, this.posX - 10, this.posY - 10, 50, 50);
+      image(imgVaca, this.posX - 10, this.posY - 10, 80, 80);
     }
   }
 }
