@@ -84,6 +84,7 @@ class Principal {
     textAlign(CENTER, CENTER);
     text("Jugar", this.botonX + this.botonAncho / 2, this.botonY + this.botonAlto / 2);
   }
+  
   mousePressed() {
     if (mouseX > this.botonX &&
       mouseX < this.botonX + this.botonAncho &&

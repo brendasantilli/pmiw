@@ -113,12 +113,6 @@ class Juego {
     this.configurarJuego();
   }
 
-
-  verificarColision(alien, personaje) {
-    let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
-    return distancia < 40;
-  }
-
   dibujarAliens() {
     for (let i = 0; i < this.aliens.length; i++) {
       this.aliens[i].dibujar();

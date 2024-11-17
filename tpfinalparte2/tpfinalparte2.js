@@ -1,3 +1,5 @@
+https://youtu.be/1jVwEcowlm8
+
 let objJuego;
 let imgAlien, imgNave, imgVaca, imgGranja, sonidoBala, sonidoGanaste, sonidoPerdiste;
 
