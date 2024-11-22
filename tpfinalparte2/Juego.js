@@ -66,6 +66,11 @@ class Juego {
     }
   }
 
+  verificarColision(alien, personaje) {
+    let distancia = dist(alien.posX, alien.posY, personaje.posX, personaje.posY);
+    return distancia < 40;
+  }
+
   verificarSecuestros() {
     for (let i = 0; i < this.aliens.length; i++) {
       if (this.aliens[i].vida) {
