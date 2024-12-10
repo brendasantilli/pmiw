@@ -77,7 +77,6 @@ p {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 iframe {
-    border-radius: 8px; 
     margin: 20px auto;
     display: block;
     width: 690px;
@@ -100,6 +99,11 @@ iframe {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
     padding: 10px;
     margin: 10px auto; 
+}
+
+.custom-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-content {
@@ -128,39 +132,35 @@ iframe {
     background-color: #E57491; 
 }
 
-.control-personalizado-prev,
-.control-personalizado-next {
-    background-color: #E57491; /* Color de fondo del círculo */
-    border-radius: 50%; /* Forma circular */
-    width: 40px; /* Ancho del círculo */
-    height: 40px; /* Altura del círculo (igual al ancho para mantener la forma circular) */
+.control-personalizado-prev,.control-personalizado-next {
+    background-color: #E57491; 
+    border-radius: 50%; 
+    width: 40px;
+    height: 40px; 
     display: flex;
-    justify-content: center; /* Centrar el icono horizontalmente */
-    align-items: center; /* Centrar el icono verticalmente */
-    cursor: pointer;
-    position: absolute; /* Permite posicionar los controles */
-    top: 50%; /* Centra verticalmente en relación al contenedor del carrusel */
-    transform: translateY(-50%); /* Ajuste preciso del centrado vertical */
+    justify-content: center; 
+    align-items: center; 
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%); 
 }
 
 .control-personalizado-prev {
-    left: 10px; /* Posición izquierda */
+    left: 10px;
 }
 
 .control-personalizado-next {
-    right: 10px; /* Posición derecha */
+    right: 10px; 
 }
 
-.control-personalizado-prev:hover,
-.control-personalizado-next:hover {
-    background-color: #c8677f; /* Color al pasar el ratón */
+.control-personalizado-prev:hover,.control-personalizado-next:hover {
+    background-color: #c8677f; 
 }
 
-.control-personalizado-prev-icon,
-.control-personalizado-next-icon {
-    filter: invert(100%); /* Hace el ícono blanco */
-    width: 20px; /* Ajusta el tamaño del ícono */
-    height: 20px; /* Ajusta el tamaño del ícono */
+.control-personalizado-prev-icon,.control-personalizado-next-icon {
+    filter: invert(100%); 
+    width: 20px; 
+    height: 20px; 
 }
 
 .card {
