@@ -63,27 +63,28 @@ p {
     color: #333; 
 }
 
-.description {
-    background-color: #D4E0DB; /* Verde claro */
+.descripcion {
+    background-color: #D4E0DB; 
     padding: 20px;
     border-radius: 8px;
 }
-.thematic-container, .production-container, .team-container {
-    background-color: #D4E0DB; /* Fondo blanco para secciones */
+
+.contenedor-tematica, .contenedor-produccion, .contenedor-equipo {
+    background-color: #D4E0DB; 
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 iframe {
-    border-radius: 8px; /* Mantén el radio si quieres bordes redondeados */
+    border-radius: 8px; 
     margin: 20px auto;
     display: block;
-    width: 690px; /* Puedes mantener estas dimensiones si lo deseas */
-    height: 510px; /* Mantén las dimensiones del iframe */
+    width: 690px;
+    height: 510px; 
 }
 .header-container {
-    background-color: #3E6B89; /* Azul oscuro */
+    background-color: #3E6B89; 
     padding: 20px;
     color: #FFFFFF;
     text-align: center;
@@ -127,9 +128,41 @@ iframe {
     background-color: #E57491; 
 }
 
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    filter: invert(100%);
+.control-personalizado-prev,
+.control-personalizado-next {
+    background-color: #E57491; /* Color de fondo del círculo */
+    border-radius: 50%; /* Forma circular */
+    width: 40px; /* Ancho del círculo */
+    height: 40px; /* Altura del círculo (igual al ancho para mantener la forma circular) */
+    display: flex;
+    justify-content: center; /* Centrar el icono horizontalmente */
+    align-items: center; /* Centrar el icono verticalmente */
+    cursor: pointer;
+    position: absolute; /* Permite posicionar los controles */
+    top: 50%; /* Centra verticalmente en relación al contenedor del carrusel */
+    transform: translateY(-50%); /* Ajuste preciso del centrado vertical */
 }
+
+.control-personalizado-prev {
+    left: 10px; /* Posición izquierda */
+}
+
+.control-personalizado-next {
+    right: 10px; /* Posición derecha */
+}
+
+.control-personalizado-prev:hover,
+.control-personalizado-next:hover {
+    background-color: #c8677f; /* Color al pasar el ratón */
+}
+
+.control-personalizado-prev-icon,
+.control-personalizado-next-icon {
+    filter: invert(100%); /* Hace el ícono blanco */
+    width: 20px; /* Ajusta el tamaño del ícono */
+    height: 20px; /* Ajusta el tamaño del ícono */
+}
+
 .card {
     background-color: #C29093;
     border: none;

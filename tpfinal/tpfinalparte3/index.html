@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiki's Delivery Service</title>
+    <title>PMIW: Trabajo Practico Final</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilo.css">
@@ -17,7 +17,7 @@
         </div>
 
         <header class="mb-4">
-            <div class="description">
+            <div class="descripcion">
                 <p>
                     Presentamos nuestro trabajo práctico final para PMIW. En éste, primero debíamos desarrollar una
                     aventura gráfica basándonos en una película de animé, para luego desarrollar un juego interactivo.
@@ -44,7 +44,7 @@
         </aside>
 
         <main>
-            <section id="thematic" class="thematic-container">
+            <section id="thematic" class="contenedor-tematica">
                 <h2>Informacion sobre la tematica</h2>
 
                 <div class="text-center">
@@ -76,7 +76,7 @@
                     audiencias de todas las edades.
                 </p>
 
-                <section id="production" class="mb-5">
+                <section id="contenedor-produccion" class="mb-5">
                     <h2>El proceso de produccion</h2>
 
                     <div class="d-flex flex-wrap">
@@ -157,33 +157,37 @@
                                     <img src="img/pantalla17.jpeg" class="d-block w-100 mx-auto" alt="Pantalla 17">
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduction"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <button class="carousel-control-prev control-personalizado-prev" type="button" data-bs-target="#carouselProduction" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon control-personalizado-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProduction"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <button class="carousel-control-next control-personalizado-next" type="button" data-bs-target="#carouselProduction" data-bs-slide="next">
+                                <span class="carousel-control-next-icon control-personalizado-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
-                            </button>
+                            </button>                            
                         </div>
                     </div>
                 </section>
 
-
+                <div>
+                    <h2>Explora la primera parte del trabajo</h2>
+                    <iframe src="../tpfinalparte1/index.html" width="690" height="510" frameborder="0"></iframe>
+                </div>                
 
                 <div>
-                    <h2>Explora el juego</h2>
+                    <h2>Explora la segunda parte del trabajo</h2>
+                    <p>
+                        Luego comenzamos con la segunda etapa en la cual tuvimos que implementar 
+                        objetos para crear nuestro videojuego Aliens vs Vacas
+                    </p>
                     <iframe src="../tpfinalparte2/index.html" width="690" height="510" frameborder="0"></iframe>
                 </div>
 
 
-                <section id="team" class="mb-5" style="clear: both;">
+                <section id="equipo" class="mb-5" style="clear: both;">
                     <h2>Integrantes del equipo</h2>
                     <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
                         <div class="card" style="width: 18rem;">
-                            <!-- Imagen de Brenda Santilli ajustada para imágenes de 1080x1080 -->
                             <img src="img/fotobrenda.png" class="card-img-top" alt="Foto de Brenda Santilli"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                             <div class="card-body text-center">
@@ -191,8 +195,7 @@
 
                             </div>
                         </div>
-                        <div class="card" style="width: 18rem;">
-                            <!-- Imagen de Alexia Roberts ajustada para imágenes de 1080x1080 -->
+                        <div class="card" style="width: 18rem;"> 
                             <img src="img/fotoalexia.png" class="card-img-top" alt="Foto de Alexia Roberts"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                             <div class="card-body text-center">
